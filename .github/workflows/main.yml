@@ -44,6 +44,13 @@ jobs:
   buildForMac:
     name: Build for Mac
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX
+    outputs:
+      buildVersion: ${{ steps.build.outputs.buildVersion }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -52,15 +59,20 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: Library
-          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**',
+          key:
+            Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**',
             'ProjectSettings/**') }}
-          restore-keys: Library-
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-
+            Library-
       - uses: game-ci/unity-builder@v2
+        id: build
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: StandaloneOSX 
+          targetPlatform: ${{ matrix.targetPlatform }}
+          versioning: Semantic
       - uses: actions/upload-artifact@v2
         with:
-          name: Build-MacOS
-          path: build/MacOS
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
