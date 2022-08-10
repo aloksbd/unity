@@ -62,5 +62,5 @@ jobs:
           targetPlatform: StandaloneOSX 
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
-          path: build
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
