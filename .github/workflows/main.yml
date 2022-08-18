@@ -42,17 +42,6 @@ jobs:
           repo: "fred"
           tag: "latest"
           file: "freenet.jar"
-          path: 'fred'
-
-      - uses: eskatos/gradle-command-action@v1
-        with:
-          arguments: unzip
-          path: 'fred'
-
-      - uses: eskatos/gradle-command-action@v1
-        with:
-          arguments: updateSetupFile
-          path: 'fred'
 
       - name: Building the installer
         run: |
