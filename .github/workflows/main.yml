@@ -4,56 +4,56 @@ on:
   workflow_dispatch
 
 jobs:
-  buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        targetPlatform:
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          lfs: true
-      - uses: actions/cache@v2
-        with:
-          path: Library
-          key: Library-${{ matrix.targetPlatform }}
-          restore-keys: Library-
-      - uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: ${{ matrix.targetPlatform }}
+#   buildForAllSupportedPlatforms:
+#     name: Build for ${{ matrix.targetPlatform }}
+#     runs-on: ubuntu-latest
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         targetPlatform:
+#           - StandaloneWindows64 # Build a Windows 64-bit standalone.
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#           lfs: true
+#       - uses: actions/cache@v2
+#         with:
+#           path: Library
+#           key: Library-${{ matrix.targetPlatform }}
+#           restore-keys: Library-
+#       - uses: game-ci/unity-builder@v2
+#         env:
+#           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+#         with:
+#           targetPlatform: ${{ matrix.targetPlatform }}
 
-      - name: Checkout fred
-        uses: actions/checkout@v2
-        with:
-          repository: 'freenet/fred'
-          fetch-depth: 0
-          path: 'fred'
+#       - name: Checkout fred
+#         uses: actions/checkout@v2
+#         with:
+#           repository: 'freenet/fred'
+#           fetch-depth: 0
+#           path: 'fred'
 
-      - name: Download fred from the Github Release
-        uses: i3h/download-release-asset@v1.2.0
-        with:
-          owner: "freenet"
-          repo: "fred"
-          tag: "latest"
-          file: "freenet.jar"
+#       - name: Download fred from the Github Release
+#         uses: i3h/download-release-asset@v1.2.0
+#         with:
+#           owner: "freenet"
+#           repo: "fred"
+#           tag: "latest"
+#           file: "freenet.jar"
 
-      - name: Building the installer
-        run: |
-          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "..\SetupTest.iss"
+#       - name: Building the installer
+#         run: |
+#           "%programfiles(x86)%\Inno Setup 6\iscc.exe" "..\SetupTest.iss"
         
 
-      - name: Upload the installer as an artifact
-        uses: actions/upload-artifact@v2
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          path: "Output/MyGame_installer.exe"
-          name: wininstaller-innosetup
+#       - name: Upload the installer as an artifact
+#         uses: actions/upload-artifact@v2
+#         if: ${{ github.event_name != 'pull_request' }}
+#         with:
+#           path: "Output/MyGame_installer.exe"
+#           name: wininstaller-innosetup
           
   buildForMac:
     name: Build for mac
