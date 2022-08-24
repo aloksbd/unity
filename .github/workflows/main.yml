@@ -6,7 +6,7 @@ on:
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
@@ -17,25 +17,22 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-#       - uses: actions/cache@v2
-#         with:
-#           path: Library
-#           key: Library-${{ matrix.targetPlatform }}
-#           restore-keys: Library-
-#       - uses: game-ci/unity-builder@v2
-#         env:
-#           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-#           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-#           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-#         with:
-#           targetPlatform: ${{ matrix.targetPlatform }}
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
 
-#       - uses: olafurpg/setup-gpg@v3
       - name: Building the installer
         run: | 
-          dir "C:\Program Files (x86)"
-#          "%programfiles(x86)%\Inno Setup 6\iscc.exe" SetupTest.iss
-#          shell: cmd
+          "C:\Program Files (x86)\Inno Setup 6\iscc.exe" SetupTest.iss
         
 
 #       - name: Upload the installer as an artifact
