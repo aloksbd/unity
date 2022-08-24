@@ -36,11 +36,11 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "build\StandaloneWindows64\Build-StandaloneWindows64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\StandaloneWindows64\Build-StandaloneWindows64\UnityCrashHandler64.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\StandaloneWindows64\Build-StandaloneWindows64\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "build\StandaloneWindows64\Build-StandaloneWindows64\Learning Prototype - 3D Core_Data\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "build\StandaloneWindows64\Build-StandaloneWindows64\MonoBleedingEdge\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\StandaloneWindows64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\StandaloneWindows64\UnityCrashHandler64.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\StandaloneWindows64\UnityPlayer.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "build\StandaloneWindows64\Learning Prototype - 3D Core_Data\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "build\StandaloneWindows64\MonoBleedingEdge\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
