@@ -34,7 +34,7 @@ jobs:
 
       - name: Building the installer
         run: | 
-          dir build
+          dir build /S
           "C:\Program Files (x86)\Inno Setup 6\iscc.exe" "SetupTest.iss"
         shell: cmd
         
