@@ -38,12 +38,12 @@ jobs:
         shell: cmd
         
 
-#       - name: Upload the installer as an artifact
-#         uses: actions/upload-artifact@v2
-#         if: ${{ github.event_name != 'pull_request' }}
-#         with:
-#           path: "Output/MyGame_installer.exe"
-#           name: wininstaller-innosetup
+      - name: Upload the installer as an artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          path: "Output"
+          name: Setup
           
 #   buildForMac:
 #     name: Build for mac
