@@ -32,7 +32,8 @@ jobs:
 
       - name: Building the installer
         run: | 
-          "C:\Program Files (x86)\Inno Setup 6\iscc.exe" SetupTest.iss
+          "C:\Program Files (x86)\Inno Setup 6\iscc.exe" "SetupTest.iss"
+          shell: cmd
         
 
 #       - name: Upload the installer as an artifact
