@@ -34,7 +34,7 @@ jobs:
       - name: Building the installer
         run: | 
           dir "%programfiles(x86)%"
-          "%programfiles(x86)%\WiX Toolset v3.11\bin\candle.exe SetupTest.wxs"
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" SetupTest.iss
           shell: cmd
         
 
