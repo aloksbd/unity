@@ -6,7 +6,7 @@ on:
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -28,20 +28,20 @@ jobs:
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
 
-      - uses: olafurpg/setup-gpg@v3
+#       - uses: olafurpg/setup-gpg@v3
       - name: Building the installer
         run: | 
-          "dir %programfiles(x86)%"
+          dir "%programfiles(x86)%"
           "%programfiles(x86)%\WiX Toolset v3.11\bin\candle.exe SetupTest.wxs"
           shell: cmd
         
 
-      - name: Upload the installer as an artifact
-        uses: actions/upload-artifact@v2
-        if: ${{ github.event_name != 'pull_request' }}
-        with:
-          path: "Output/MyGame_installer.exe"
-          name: wininstaller-innosetup
+#       - name: Upload the installer as an artifact
+#         uses: actions/upload-artifact@v2
+#         if: ${{ github.event_name != 'pull_request' }}
+#         with:
+#           path: "Output/MyGame_installer.exe"
+#           name: wininstaller-innosetup
           
 #   buildForMac:
 #     name: Build for mac
