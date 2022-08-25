@@ -32,7 +32,7 @@ jobs:
       - name: Building the installer
         run: | 
           brew install create-dmg
-          create-dmg game.dmg build/StandaloneOSX/StandaloneOSX.app
+          create-dmg --volname "Application Installer" --background "installer_background.png" --window-pos 200 120 --window-size 800 450 --icon-size 100 --icon "StandaloneOSX.app" 200 190 --app-drop-link 600 185 --eula "lic.rtf" "StandaloneOSX.dmg" "build/StandaloneOSX/StandaloneOSX.app"
         
 
       - name: Upload the installer as an artifact
