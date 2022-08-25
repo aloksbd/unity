@@ -31,6 +31,7 @@ jobs:
 
       - name: Building the installer
         run: | 
+          brew install create-dmg
           create-dmg game.dmg build/StandaloneOSX/StandaloneOSX.app
         
 
