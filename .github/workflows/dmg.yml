@@ -39,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          path: game.dmg
-          name: Setup
+          path: StandaloneOSX.dmg
+          name: StandaloneOSX
